@@ -1,0 +1,51 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <div class="detail-global">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card-boxed">
+          <h3>Confirmados: <span>{{confirmed | number:'1.0-0'}}</span></h3>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card-boxed">
+          <h3>Recuperados: <span>{{recovered | number:'1.0-0'}}</span></h3>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card-boxed">
+          <h3>Fallecidos: <span>{{deaths | number:'1.0-0'}}</span></h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-content">
+    <div>
+      <input type="text" name="filterSearch" placeholder="Buscar" [(ngModel)]="filterSearch">
+    </div>
+    <!-- table -->
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col" width="357px">País</th>
+          <th scope="col" width="357px">Ciudad</th>
+          <th scope="col" class="text-center">Confirmados</th>
+          <th scope="col" class="text-center">Recuperados</th>
+          <th scope="col" class="text-center">Fallecidos</th>
+          <th scope="col" class="text-center">Actualización</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let countrie of countries | filter: 'countryRegion': filterSearch">
+          <td>{{ countrie.countryRegion }}</td>
+          <td>{{ countrie.provinceState }}</td>
+          <td class="text-center">{{ countrie.confirmed | number:'1.0-0' }}</td>
+          <td class="text-center">{{ countrie.recovered | number:'1.0-0' }}</td>
+          <td class="text-center">{{ countrie.deaths | number:'1.0-0' }}</td>
+          <td class="text-center">{{ countrie.lastUpdate | date }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>  
+</div>
+
